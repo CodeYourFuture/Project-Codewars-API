@@ -13,29 +13,30 @@ Let's play with grabbing some data from an API and displaying it on a website. W
 
 1. Open the `index.html` file in your browser and you should see a basic badge with the CodeYourFuture Codewars rank. The badge is a web component that is defined in the `codewars-badge.js` file.
 
-The badge is imported as a js module in the `index.html` file. This module defines a new HTML element called `<codewars-badge>`, which can be used just like any other HTML element. (This is basically how all HTML elements are defined, it's just that the browser defines the default ones for us.)
+Find the js module in the `index.html` file that links `codewars-badge.js`. This module defines a new HTML element called `<codewars-badge>`, which you can now use _just like any other HTML element_. (This is basically how all HTML elements are defined, it's just that the browser defines the default ones for us.)
 
-2. Open the `codewars-badge.js` file. The badge is defined as a class that extends the `HTMLElement` class. This is how web components are defined. The `connectedCallback` method is called when the element is added to the DOM. This is where we (a) make the request to the Codewars API and then (b) render the data we get back.
+2. Open the `codewars-badge.js` file. The badge is defined as a class that extends the `HTMLElement` class. The `connectedCallback` method is called when the element is added to the DOM. In this case it runs when the page loads. This callback is where we (a) make the request to the Codewars API and then (b) render the data we get back.
 
 3. Change the `username` variable in the `codewars-badge.js` file to your own Codewars username. Save the file and refresh the page to see your own badge.
 
-4. Look at this API directly in your browser: https://www.codewars.com/api/v1/users/CodeYourFuture. (Install a [JSON viewer extension](https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh) for your browser if you don't have one already. This will make it easier to read the data.)
+4. [Look at this API directly](https://www.codewars.com/api/v1/users/CodeYourFuture) in your browser. It's just a URL - you can look at it. (Install a [JSON viewer extension](https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh) for your browser if you don't have one already. This will make it easier to read the data.)
 
-5. There's lots of other possible data we could display in the badge. Now try adding some more data to the badge. You can find the documentation for the Codewars API here: https://dev.codewars.com/#get-user
+5. Now try adding some more data to the badge component. There's lots of other possible data we could display in the badge. Read the [Codewars API docs](https://dev.codewars.com/#get-user) to help you.
 
-6. Now try creating a new web component that displays some data from a Codewars API. There are several documented APIs you can try out. Use the `codewars-badge.js` file as a template for how to define a web component. You can use the `index.html` file to test your new component.
+6. Now try creating a _new_ web component that displays some data from a Codewars API. There are several documented Codewars APIs you can play with. Use the `codewars-badge.js` file as a template for how to define a web component. You can use the `index.html` file to test your new component.
 
 #### Remember: keep it simple!
 
-You don't need to make a full web app. Just make a web component that displays some data from the Codewars API. If your component gets complicated, _break it down_ into smaller components and compose them on the page, just as you would do with any other HTML element.
+You don't need to make a full web app. Just make a web component that displays some data from the Codewars API. Explore and get creative. If your component gets complicated, _break it down_ into smaller components and compose them on the page, just as you would do with any other HTML elements.
 
 ## Acceptance Criteria
 
-- [ ] I have explained how components are used in web development in my own words
 - [ ] I have adapted an existing web component to show my own data
 - [ ] I have extended this web component to present more data from the Codewars API
 - [ ] I have created a new web component that presents data from the Codewars API in my own way
-- [ ] I have run Lighthouse on my components and my Accessibility score is 100
+- [ ] I have tested my page with Lighthouse and my Accessibility score is 100
+- [ ] I have opened a pull request with my changes to this repo
+- [ ] I have explained how components are used in web development, in my own words, in my pull request message
 
 ## Resources
 
