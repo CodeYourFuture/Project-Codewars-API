@@ -1,0 +1,14 @@
+.card {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #262729;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    width: 240px;
+    border-radius: 50%;
+    opacity: 0.9;
+}

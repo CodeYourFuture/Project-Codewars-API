@@ -6,7 +6,7 @@ class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
+    this.userName = "Mpanasetckiy";
     this.userData = [];
   }
 
@@ -40,12 +40,67 @@ class CodeWarsBadge extends HTMLElement {
             color: var(--rank);
             border: 3px solid; 
             padding: .25em .5em;
-        }      
+        }  
+        p {
+          color: #fff;
+        }
+        .badge {
+          display: flex;
+          column-gap: 1rem;
+          align-items: center;
+        }
       </style>
-        <data value="${this.userData.ranks.overall.score}">
-        ${this.userData.ranks.overall.name}
-        </data>`;
+      <div class="badge">
+      <data value="${this.userData.ranks.overall.score}">
+      ${this.userData.ranks.overall.name}
+      </data>
+      <p>${this.userData.name}</p>
+      <p>${this.userData.honor}</p>
+      </div>
+      `;
+  }
+}
+
+class CodeWarsStats extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.userName = "Mpanasetckiy";
+    this.userData = {};
+  }
+ 
+  connectedCallback() {
+    this.fetchActivity()
+      .then(() => {
+        this.render();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  // fetch the data from the Codewars API
+  async fetchActivity() {
+    const response = await fetch(
+      `https://www.codewars.com/api/v1/users/${this.userName}`
+    );
+    const data = await response.json();
+    this.userData = data; // set the userData property with the fetched data
+  }
+
+  render () {
+    this.shadowRoot.innerHTML = `
+    <style>
+      p {
+        color: #fff;
+      }
+    </style>
+    <div>
+    <p>Clan: ${this.userData.clan}</p>
+    <p>Total Completed Kata: ${this.userData.codeChallenges.totalCompleted}</p>
+    </div>`;
   }
 }
 
 customElements.define("codewars-badge", CodeWarsBadge);
+customElements.define("codewars-stats", CodeWarsStats);
