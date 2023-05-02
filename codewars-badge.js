@@ -6,7 +6,7 @@ class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
+    this.userName = "KristinaDudnyk";
     this.userData = [];
   }
 
@@ -29,6 +29,14 @@ class CodeWarsBadge extends HTMLElement {
     this.userData = data; // set the userData property with the fetched data
   }
 
+  // async fetchActivity() {
+  //   const response = await fetch(
+  //     `https://www.codewars.com/api/v1/users/${this.userName}/code-challenges/completed?page`
+  //   );
+  //   const data = await response.json();
+  //   this.userData = data;
+  // }
+
   render() {
     this.shadowRoot.innerHTML = `
     <style>
@@ -40,12 +48,30 @@ class CodeWarsBadge extends HTMLElement {
             color: var(--rank);
             border: 3px solid; 
             padding: .25em .5em;
-        }      
+        }     
       </style>
-        <data value="${this.userData.ranks.overall.score}">
-        ${this.userData.ranks.overall.name}
-        </data>`;
+
+      <article>
+        <div class="name-and-rank-container">
+          <data value="${this.userData.ranks.overall.score}">${this.userData.ranks.overall.name}</data>
+          <h2>Hi I'm ${this.userData.name}</h2>
+        </div>  
+        <h3>Here is my username by the way(${this.userData.username})
+        :D 
+        <div class="div-one">
+        
+      </div>
+          
+        <div>
+          <ul>Completed Chellenges:
+            <li>${this.userData.codeChallenges.totalCompleted}</li>
+          </ul>
+        </div>
+      </article>
+        `;
   }
+
+
 }
 
 customElements.define("codewars-badge", CodeWarsBadge);

@@ -1,0 +1,33 @@
+body {
+  color: hsl(0, 0%, 100%);
+  background-color:  hsl(170, 40%, 57%);
+}
+
+article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.js-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(101, 189, 174);
+  align-items: center;
+  width: 100%;
+  padding: 200px;
+  justify-content: space-between;
+}
+
+.div-one {
+  width: 100%;
+  background-color: rgb(0, 255, 76);
+
+}
+
+.name-and-rank-container {
+  display: flex;
+  flex-direction: row;
+}
+
