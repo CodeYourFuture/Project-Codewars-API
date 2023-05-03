@@ -14,20 +14,21 @@ article {
   display: flex;
   flex-direction: column;
   background-color: rgb(101, 189, 174);
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   padding: 200px;
   justify-content: space-between;
 }
 
-.div-one {
-  width: 100%;
-  background-color: rgb(0, 255, 76);
 
-}
 
 .name-and-rank-container {
   display: flex;
   flex-direction: row;
 }
+
+/* .words-color {
+  color: hsl(61, 100%, 77%);
+
+} */
 

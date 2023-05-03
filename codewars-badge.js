@@ -29,13 +29,6 @@ class CodeWarsBadge extends HTMLElement {
     this.userData = data; // set the userData property with the fetched data
   }
 
-  // async fetchActivity() {
-  //   const response = await fetch(
-  //     `https://www.codewars.com/api/v1/users/${this.userName}/code-challenges/completed?page`
-  //   );
-  //   const data = await response.json();
-  //   this.userData = data;
-  // }
 
   render() {
     this.shadowRoot.innerHTML = `
@@ -56,16 +49,13 @@ class CodeWarsBadge extends HTMLElement {
           <data value="${this.userData.ranks.overall.score}">${this.userData.ranks.overall.name}</data>
           <h2>Hi I'm ${this.userData.name}</h2>
         </div>  
-        <h3>Here is my username by the way(${this.userData.username})
-        :D 
         <div class="div-one">
+        <h4>My clan: <span style="color: hsl(61, 100%, 77%);
+          " class="words-color">${this.userData.clan}</span></h4>  
         
-      </div>
-          
+        </div>
         <div>
-          <ul>Completed Chellenges:
-            <li>${this.userData.codeChallenges.totalCompleted}</li>
-          </ul>
+          <h3>Here is my username ${this.userData.username}</h3>
         </div>
       </article>
         `;
