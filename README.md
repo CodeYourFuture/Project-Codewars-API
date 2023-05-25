@@ -19,7 +19,7 @@ Let's play with grabbing some data from an API and displaying it on a website. W
 
 4. Change the `username` variable in the `codewars-badge.js` file to your own Codewars username. Save the file and refresh the page to see your own badge.
 
-5. [Look at this API directly](https://www.codewars.com/api/v1/users/CodeYourFuture) in your browser. It's just a URL - you can look at it. (Install a [JSON viewer extension](https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh) for your browser if you don't have one already. This will make it easier to read the data.)
+5. [Look at this API directly](https://www.codewars.com/api/v1/users/CodeYourFuture) in your browser. It's just a URL - you can look at it. (Install a [JSON viewer extension](https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh) for your browser if you don't have one already. This will make it easier to read the data.)= 
 
 6. Now try adding some more data to the badge component. There's lots of other possible data we could display in the badge. Read the [Codewars API docs](https://dev.codewars.com/#get-user) to help you.
 
@@ -31,10 +31,10 @@ You don't need to make a full web app. Just make a web component that displays s
 
 ## Acceptance Criteria
 
-- [ ] I have adapted an existing web component to show my own data
-- [ ] I have extended this web component to present more data from the Codewars API
-- [ ] I have created a new web component that presents data from the Codewars API in my own way
-- [ ] I have tested my page with Lighthouse and my Accessibility score is 100
+- [+] I have adapted an existing web component to show my own data
+- [+] I have extended this web component to present more data from the Codewars API
+- [+] I have created a new web component that presents data from the Codewars API in my own way
+- [+] I have tested my page with Lighthouse and my Accessibility score is 100
 - [ ] I have opened a pull request with my changes to this repo
 - [ ] I have explained how components are used in web development, in my own words, in my pull request message
 
