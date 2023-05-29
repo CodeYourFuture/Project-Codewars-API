@@ -6,7 +6,7 @@ class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
+    this.userName = "ahmedsaif2002";
     this.userData = [];
     this.challengeCategories = [];
   }
@@ -33,7 +33,7 @@ class CodeWarsBadge extends HTMLElement {
   // fetch the data from the Codewars API
   async fetchActivity() {
     const response = await fetch(
-      `https://www.codewars.com/api/v1/users/${this.ahmedsaif2002}`
+      `https://www.codewars.com/api/v1/users/${this.userName}`
     );
     const data = await response.json();
     this.userData = data; // set the userData property with the fetched data
@@ -58,6 +58,7 @@ class CodeWarsBadge extends HTMLElement {
     <style>
         :host {
            --rank: ${this.userData.ranks.overall.color};
+           --completed: ${this.userData.codeChallenges.totalCompleted};
            font: 600 100%/1 system-ui, sans-serif;
            background-color: #f5f5f5;
            padding: 10px;
@@ -89,6 +90,7 @@ class CodeWarsBadge extends HTMLElement {
         <data value="${this.userData.ranks.overall.score}">
         ${this.userData.ranks.overall.name}
         </data>`;
+        
   }
 }
 

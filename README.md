@@ -31,11 +31,11 @@ You don't need to make a full web app. Just make a web component that displays s
 
 ## Acceptance Criteria
 
-- [ ] I have adapted an existing web component to show my own data
-- [ ] I have extended this web component to present more data from the Codewars API
-- [ ] I have created a new web component that presents data from the Codewars API in my own way
+- [+] I have adapted an existing web component to show my own data
+- [+] I have extended this web component to present more data from the Codewars API
+- [+] I have created a new web component that presents data from the Codewars API in my own way
 - [ ] I have tested my page with Lighthouse and my Accessibility score is 100
-- [ ] I have opened a pull request with my changes to this repo
+- [+] I have opened a pull request with my changes to this repo
 - [ ] I have explained how components are used in web development, in my own words, in my pull request message
 
 ## Resources
