@@ -8,6 +8,7 @@ class CodeWarsBadge extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.userName = "CodeYourFuture";
     this.userData = [];
+    this.challengeCategories = [];
   }
 
   connectedCallback() {
@@ -19,14 +20,37 @@ class CodeWarsBadge extends HTMLElement {
         console.error(error);
       });
   }
+  connectedCallback() {
+    this.fetchUserDetails()
+      .then(() => {
+        this.render();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   // fetch the data from the Codewars API
   async fetchActivity() {
     const response = await fetch(
-      `https://www.codewars.com/api/v1/users/${this.userName}`
+      `https://www.codewars.com/api/v1/users/${this.ahmedsaif2002}`
     );
     const data = await response.json();
     this.userData = data; // set the userData property with the fetched data
+  }
+
+  async fetchUserDetails() {
+    const response = await fetch(
+      `https://www.codewars.com/api/v1/users/ahmedsaif2002`
+    );
+    const data = await response.json();
+    this.userData = data;
+  }
+
+  async fetchChallengeCategories() {
+    const response = await fetch(`https://www.codewars.com/api/v1/categories`);
+    const data = await response.json();
+    this.challengeCategories = data;
   }
 
   render() {
@@ -35,11 +59,31 @@ class CodeWarsBadge extends HTMLElement {
         :host {
            --rank: ${this.userData.ranks.overall.color};
            font: 600 100%/1 system-ui, sans-serif;
+           background-color: #f5f5f5;
+           padding: 10px;
+           display: inline-block;
+        }
+
+         h2 {
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+        }
+
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        li {
+          margin-bottom: 5px;
         }
         data { 
-            color: var(--rank);
-            border: 3px solid; 
-            padding: .25em .5em;
+           color: var(--rank);
+           border: 3px solid;
+           padding: 0.25em 0.5em;
+           display: inline-block;
         }      
       </style>
         <data value="${this.userData.ranks.overall.score}">
@@ -47,5 +91,6 @@ class CodeWarsBadge extends HTMLElement {
         </data>`;
   }
 }
+
 
 customElements.define("codewars-badge", CodeWarsBadge);
