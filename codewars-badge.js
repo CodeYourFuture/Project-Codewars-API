@@ -61,10 +61,13 @@ class CodeWarsBadge extends HTMLElement {
            font: 600 100%/1 system-ui, sans-serif;
         }
         data { 
-            color: var(--rank);
+            color: orange;
             border: 3px solid; 
-            padding: .25em .5em;
-        }      
+            padding: 10px;
+        } 
+        user {
+          font-size:30px;
+        }     
       </style>
         <data value="${this.userData.ranks.overall.score}">
         ${this.userData.ranks.overall.name}</data>
