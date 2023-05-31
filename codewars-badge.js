@@ -8,6 +8,7 @@ class CodeWarsBadge extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.userName = "Junitalama";
     this.userData = [];
+    this.challengeCategories = [];
   }
 
   connectedCallback() {
@@ -19,14 +20,37 @@ class CodeWarsBadge extends HTMLElement {
         console.error(error);
       });
   }
+  connectedCallback() {
+    this.fetchUserDetails()
+      .then(() => {
+        this.render();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   // fetch the data from the Codewars API
   async fetchActivity() {
     const response = await fetch(
-      `https://www.codewars.com/api/v1/users/${this.userName}`
+      `https://www.codewars.com/api/v1/users/${this.Junitalama}`
     );
     const data = await response.json();
     this.userData = data; // set the userData property with the fetched data
+  }
+
+  async fetchUserDetails() {
+    const response = await fetch(
+      `https://www.codewars.com/api/v1/users/Junitalama`
+    );
+    const data = await response.json();
+    this.userData = data;
+  }
+
+  async fetchChallengeCategories() {
+    const response = await fetch(`https://www.codewars.com/api/v1/categories`);
+    const data = await response.json();
+    this.challengeCategories = data;
   }
 
   render() {
@@ -35,21 +59,12 @@ class CodeWarsBadge extends HTMLElement {
         :host {
            --rank: ${this.userData.ranks.overall.color};
            font: 600 100%/1 system-ui, sans-serif;
-           
         }
         data { 
-            color: orange;
+            color: var(--rank);
             border: 3px solid; 
-            padding: 10px;
-        } 
-        user { font-size :30px;
-        } 
-
-        honor, clan , challenge{
-          color:white;
-          background-color : black;
-        }
-
+            padding: .25em .5em;
+        }      
       </style>
         <data value="${this.userData.ranks.overall.score}">
         ${this.userData.ranks.overall.name}</data>
@@ -67,5 +82,6 @@ class CodeWarsBadge extends HTMLElement {
         Total completed kata : ${this.userData.codeChallenges.totalCompleted}`;
   }
 }
+
 
 customElements.define("codewars-badge", CodeWarsBadge);
