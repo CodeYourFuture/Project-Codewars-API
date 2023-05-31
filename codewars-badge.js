@@ -67,7 +67,12 @@ class CodeWarsBadge extends HTMLElement {
         } 
         user {
           font-size:30px;
-        }     
+        } 
+        
+        honor, clan, challenge {
+          background-color:black;
+          color:white;
+        }
       </style>
         <data value="${this.userData.ranks.overall.score}">
         ${this.userData.ranks.overall.name}</data>
