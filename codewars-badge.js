@@ -1,12 +1,12 @@
 // This native web component fetches data from the Codewars API and renders it as a badge
 // Here is some information about web component https://developer.mozilla.org/en-US/docs/Web/Web_Components
-// Here is the link to the Codewars API Docs: https://dev.codewars.com/#get-user
+// Here is the link to the CodeWars API Docs: https://dev.codewars.com/#get-user
 
 class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
+    this.userName = "Abubakar-Meigag";
     this.userData = [];
   }
 
@@ -27,10 +27,13 @@ class CodeWarsBadge extends HTMLElement {
     );
     const data = await response.json();
     this.userData = data; // set the userData property with the fetched data
+    // console.log(this.userData);
   }
 
   render() {
     this.shadowRoot.innerHTML = `
+    <h2>${this.userData.name}</h2>
+    
     <style>
         :host {
            --rank: ${this.userData.ranks.overall.color};
@@ -41,10 +44,17 @@ class CodeWarsBadge extends HTMLElement {
             border: 3px solid; 
             padding: .25em .5em;
         }      
-      </style>
+    </style>
+
         <data value="${this.userData.ranks.overall.score}">
         ${this.userData.ranks.overall.name}
-        </data>`;
+        </data>
+        <br>
+        <br><span>Clan: ${this.userData.clan}</span>
+        <br><span>Honor: ${this.userData.honor}</span>
+        <br><span>total Completed: ${this.userData.codeChallenges.totalCompleted}</span>
+
+        `;
   }
 }
 
