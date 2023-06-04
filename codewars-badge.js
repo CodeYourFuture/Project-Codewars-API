@@ -6,7 +6,7 @@ class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
+    this.userName = "anuthapaliy";
     this.userData = [];
   }
 
@@ -33,14 +33,28 @@ class CodeWarsBadge extends HTMLElement {
     this.shadowRoot.innerHTML = `
     <style>
         :host {
-           --rank: ${this.userData.ranks.overall.color};
-           font: 600 100%/1 system-ui, sans-serif;
+          --rank: ${this.userData.ranks.overall.color};
+          font: 600 100%/1 system-ui, sans-serif;
         }
         data { 
-            color: var(--rank);
-            border: 3px solid; 
-            padding: .25em .5em;
-        }      
+          color: green;
+         border: 3px solid; 
+         padding: 20px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         font-family: Arial, sans-serif;
+         padding: 15px;
+         border: 3px solid red;
+         border-radius: 10px;
+
+        }  
+       
+        user {
+          font-size: 30px
+        }
+
+
       </style>
         <data value="${this.userData.ranks.overall.score}">
         ${this.userData.ranks.overall.name}
