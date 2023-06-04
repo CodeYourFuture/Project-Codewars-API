@@ -39,19 +39,18 @@ class CodeWarsBadge extends HTMLElement {
         data { 
           color: green;
          border: 3px solid; 
-         padding: 20px;
+         padding: 4px;
          display: flex;
-         flex-direction: column;
          align-items: center;
          font-family: Arial, sans-serif;
          padding: 15px;
          border: 3px solid red;
-         border-radius: 10px;
+         border-radius: 4px;
 
         }  
        
         user {
-          font-size: 30px
+          font-size: 20px
         }
 
 
