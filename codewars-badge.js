@@ -1,6 +1,3 @@
-// This native web component fetches data from the Codewars API and renders it as a badge
-// Here is some information about web component https://developer.mozilla.org/en-US/docs/Web/Web_Components
-// Here is the link to the Codewars API Docs: https://dev.codewars.com/#get-user
 
 class CodeWarsBadge extends HTMLElement {
   constructor() {
@@ -9,7 +6,6 @@ class CodeWarsBadge extends HTMLElement {
     this.userName = "CodeYourFuture";
     this.userData = [];
   }
-
   connectedCallback() {
     this.fetchActivity()
       .then(() => {
@@ -25,10 +21,10 @@ class CodeWarsBadge extends HTMLElement {
     const response = await fetch(
       `https://www.codewars.com/api/v1/users/${this.userName}`
     );
+
     const data = await response.json();
     this.userData = data; // set the userData property with the fetched data
   }
-
   render() {
     this.shadowRoot.innerHTML = `
     <style>
@@ -37,15 +33,73 @@ class CodeWarsBadge extends HTMLElement {
            font: 600 100%/1 system-ui, sans-serif;
         }
         data { 
-            color: var(--rank);
-            border: 3px solid; 
-            padding: .25em .5em;
-        }      
+        display:flex;
+        justify-content:space-between;
+        }   
+        .container{
+          display:flex;
+          flex-direction:column;
+          gap:1rem;
+          width:60%;
+          background:#F6E8EA;
+          padding:2rem;
+          border:2px solid black;
+        }  
+        .label{
+          text-align:center;
+          color: black;
+          border: 3px solid black; 
+          padding: .25em .5em;
+          width:15rem;
+        } 
+        .rank{
+          color:var(--rank);
+          border: 3px solid var(--rank); 
+          padding: .25em .5em;
+          width:5rem;
+        }
       </style>
-        <data value="${this.userData.ranks.overall.score}">
+      <div class="container">
+      <data class="rank" value="${this.userData.ranks.overall.score}">
         ${this.userData.ranks.overall.name}
-        </data>`;
+        </data>
+        <data value="${this.userData.name}">Name:
+        <span class="label">${this.userData.name}</span>
+        </data>
+        <data value="${this.userData.honor}"></span>
+        Honor:
+       <span class="label" >${this.userData.honor}</span>
+        </data>
+        <data value="${this.userData.clan}">
+        Clan :
+        <span class="label">${this.userData.clan}</span>
+        </data>
+        <data value="${this.userData.clan}">
+        LeaderShip Board Position :
+        <span class="label">${this.userData.leaderboardPosition}</span>
+        </data>
+        <data value="${this.userData.ranks.overall.rank}">
+        Rank: 
+        <span class="label">${this.userData.ranks.overall.rank}</span>
+        </data>
+        <data value="${this.userData.ranks.overall.score}">
+        Score: 
+        <span class="label">${this.userData.ranks.overall.score}</span>
+        </data>
+        <data value="${this.userData.ranks.languages.javascript.score}">
+        JavaScript Score: 
+        <span class="label">${this.userData.ranks.languages.javascript.score}</span>
+        </data>
+        <data value="${Object.keys(this.userData.ranks.languages)}">
+        Languages: 
+        <span class="label">${Object.keys(this.userData.ranks.languages)}</span>
+        </data>
+        </div>
+        `
+      ;
   }
 }
 
 customElements.define("codewars-badge", CodeWarsBadge);
+
+
