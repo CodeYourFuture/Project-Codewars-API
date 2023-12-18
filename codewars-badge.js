@@ -41,14 +41,14 @@ class CodeWarsBadge extends HTMLElement {
           flex-direction:column;
           gap:1rem;
           width:60%;
-          background:#F6E8EA;
+          background:black;
+          color:white;
           padding:2rem;
           border:2px solid black;
         }  
         .label{
           text-align:center;
-          color: black;
-          border: 3px solid black; 
+          border: 3px solid white; 
           padding: .25em .5em;
           width:15rem;
         } 
