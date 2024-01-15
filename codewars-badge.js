@@ -31,7 +31,7 @@ class CodeWarsBadge extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML = `
-    <style>
+      <style>
         :host {
            --rank: ${this.userData.ranks.overall.color};
            font: 600 100%/1 system-ui, sans-serif;
@@ -44,7 +44,7 @@ class CodeWarsBadge extends HTMLElement {
       </style>
         <data value="${this.userData.ranks.overall.score}">
         ${this.userData.ranks.overall.name}
-        </data>`;
+      </data>`;
   }
 }
 
