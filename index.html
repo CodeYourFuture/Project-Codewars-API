@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en-gb">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Codewars Badge</title>
-    <meta
-      name="description"
-      content="Extending HTML to create a new component"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <codewars-badge></codewars-badge>
-    <script async defer type="module" src="./codewars-badge.js"></script>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Codewars Badge</title>
+  <meta name="description" content="Extending HTML to create a new component" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <codewars-badge></codewars-badge>
+  <codewars-challenges></codewars-challenges>
+  <codewars-last-completed></codewars-last-completed>
+
+
+  <script async defer type="module" src="./codewars-badge.js"></script>
+  <script async defer type="module" src="./codewars-challenges.js"></script>
+  <script async defer type="module" src="./codewars-last-completed.js"></script>
+</body>
+
 </html>

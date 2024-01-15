@@ -33,18 +33,37 @@ class CodeWarsBadge extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>
         :host {
-           --rank: ${this.userData.ranks.overall.color};
-           font: 600 100%/1 system-ui, sans-serif;
+          --rank: ${this.userData.ranks.overall.color};
+          --font-sans-serif: 'Lato', sans-serif;
         }
         data { 
-            color: var(--rank);
-            border: 3px solid; 
-            padding: .25em .5em;
+          color: var(--rank);
+          border: 3px solid; 
+          padding: .25em .5em;
+        }
+        .container-horizontal {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 1em;
+          margin: 2rem 0 1rem;
+        }
+
+        .title {
+          display: inline-block;
+          font-family: var(--font-sans-serif);
+          font-size: 2rem;
+          margin: 0;
         }      
       </style>
+      <div class="container-horizontal">
         <data value="${this.userData.ranks.overall.score}">
         ${this.userData.ranks.overall.name}
-      </data>`;
+        </data>
+        <h1 class="title">${this.userData.username}</h1>
+      </div>`;
   }
 }
 
