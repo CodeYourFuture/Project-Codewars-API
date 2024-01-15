@@ -6,7 +6,7 @@ class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
+    this.userName = "PERicci";
     this.userData = [];
   }
 
