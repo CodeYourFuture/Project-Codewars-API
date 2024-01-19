@@ -1,0 +1,42 @@
+body {
+    background-color: #1D1D1B;
+    color: #7C9521;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  h1 {
+    margin: 0 auto; 
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 60%;
+    margin: 0 auto; 
+  }
+  
+  td {
+    border: 1px solid #7C9521;
+    padding: 10px;
+  }
+  
+  codewars-badge {
+    --overall-rank: var(--badge-color, #f7941d);
+    --javascript-rank: var(--badge-color, #f7941d);
+    font: 600 100%/1 system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  data {
+    margin-top: 20px;
+  }
+  
