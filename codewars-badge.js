@@ -1,13 +1,9 @@
-// This native web component fetches data from the Codewars API and renders it as a badge
-// Here is some information about web component https://developer.mozilla.org/en-US/docs/Web/Web_Components
-// Here is the link to the Codewars API Docs: https://dev.codewars.com/#get-user
-
 class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
-    this.userData = [];
+    this.userName = "fhkahin";
+    this.userData = {};
   }
 
   connectedCallback() {
@@ -26,25 +22,30 @@ class CodeWarsBadge extends HTMLElement {
       `https://www.codewars.com/api/v1/users/${this.userName}`
     );
     const data = await response.json();
-    this.userData = data; // set the userData property with the fetched data
+    this.userData = data; 
+    return data;
   }
 
   render() {
     this.shadowRoot.innerHTML = `
-    <style>
-        :host {
-           --rank: ${this.userData.ranks.overall.color};
-           font: 600 100%/1 system-ui, sans-serif;
-        }
-        data { 
-            color: var(--rank);
-            border: 3px solid; 
-            padding: .25em .5em;
-        }      
-      </style>
-        <data value="${this.userData.ranks.overall.score}">
-        ${this.userData.ranks.overall.name}
-        </data>`;
+    <data>
+      <table>
+        <tr>
+          <td>Overall Rank</td>
+          <td>${this.userData.ranks.overall.name}</td>
+          <td>${this.userData.ranks.overall.score}</td>
+        </tr>
+        <tr>
+          <td>JavaScript Rank</td>
+          <td>${this.userData.ranks.languages.javascript.name}</td>
+          <td>${this.userData.ranks.languages.javascript.score}</td>
+        </tr>
+        <tr>
+          <td>Total Challenges Completed</td>
+          <td colspan="2">${this.userData.codeChallenges.totalCompleted}</td>
+        </tr>
+      </table>
+    </data>`;
   }
 }
 
