@@ -50,3 +50,5 @@ class CodeWarsBadge extends HTMLElement {
 }
 
 customElements.define("codewars-badge", CodeWarsBadge);
+
+
