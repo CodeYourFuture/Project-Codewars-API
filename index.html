@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>Codewars Badge</title>
     <meta
       name="description"
@@ -11,8 +16,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <codewars-badge></codewars-badge>
-    <self-created></self-created>
+    <!-- <codewars-badge></codewars-badge> -->
+    <div id="main-div">
+      <div>
+        <input type="text" />
+        <span id="icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+      </div>
+      <self-created></self-created>
+    </div>
     <script async defer type="module" src="./codewars-badge.js"></script>
   </body>
 </html>

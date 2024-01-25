@@ -50,30 +50,69 @@ class CodeWarsBadge extends HTMLElement {
 
 customElements.define("codewars-badge", CodeWarsBadge);
 
+/////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+let kataColor, kataValue, kataContent;
 const template = document.createElement("template");
 template.innerHTML = `
-<div class='user-card'>
-<h3></h3>
-<p id='user-name'></p>
-<p id='name-of-user'></p>
-<ul id='skills></ul>
-<p id='clan'></p>
-<p id='languages'></p>
-</div>
+<div class='container'>
+  <data id='dataTag'  value=${kataValue}></data>
+
+  <div class='user-card'>
+  <h3></h3>
+  <p id='user-name'></p>
+  <p id='name-of-user'></p>
+  <p id='clan'></p>
+  <ul id='skills'></ul>
+  <div>
+    <p id='overall-rank'></p>
+    <p id='languages'></p>
+  </div>
+  </div>
+  </div>
 
 <style>
-.user-card{
-  background-color:#1f1f2e;
-  color:white;
-  margin:2rem auto 2rem auto;
-  width:60%
-}
-h3{
-  margin:0;
-  padding:0;
-  
-  
-}
+  :host{
+    --rank: yellow;
+    font: 600 100%/1 system-ui, sans-serif;
+  }
+  .container{
+    background-color:#5c5a5a;;
+    color:white;
+    margin:2rem auto 2rem auto;
+    width:60%;
+    height:fit-content;
+    padding:1rem;
+  }
+  .user-card{
+    background-color:#1f1f2e;
+    margin-top:1rem;
+    padding:1rem;
+  }
+  h3{
+    margin:0;
+    padding:0;
+    
+  }
+  ul{
+    margin:0;
+    padding:0;
+  }
+  li{
+    margin-bottom:0.3rem;
+  }
+  span{
+    margin-bottom:.25rem;
+  }
+  #dataTag{
+    color:var(--rank);
+    border: 3px solid ; 
+    padding: .25em .5em;
+    margin-bottom:1rem;
+    
+    
+  }
+
 </style>
 `;
 
@@ -87,11 +126,19 @@ class SelfCreated extends HTMLElement {
 
   connectedCallback() {
     this.fetching()
-      .then(() => this.render())
-      .then(() => console.log("this is userData------->", this.userData))
-      .then(console.log(this.userData.ranks), "<------------second console")
-      .catch(error, console.log(error, "<---------- error happened"));
+      .then(() => {
+        kataColor = this.userData.ranks.overall.color;
+        kataContent = this.userData.ranks.overall.name;
+        kataValue = this.userData.ranks.overall.score;
+        this.render();
+      })
+      .then(() => this.userData)
+      .catch((error) => console.log(error, "<---------- error happened"));
+
+    const fontAwesome = document.querySelector("#icon");
+    fontAwesome.addEventListener("click", () => this.getUserName());
   }
+
   async fetching() {
     const response = await fetch(
       `https://www.codewars.com/api/v1/users/${this.userName}`
@@ -99,6 +146,17 @@ class SelfCreated extends HTMLElement {
 
     const data = await response.json();
     this.userData = data;
+  }
+
+  getUserName() {
+    const value = document.querySelector("input").value;
+    if (value != "") {
+      this.userName = value;
+      console.log(this.userName, "<---------Username");
+    } else {
+      this.userName = "bkarimii";
+    }
+    console.log(123);
   }
 
   render() {
@@ -110,6 +168,36 @@ class SelfCreated extends HTMLElement {
     this.shadowRoot.querySelector(
       "#name-of-user"
     ).textContent = `Name: ${this.userData.name}`;
+    const skillsList = this.shadowRoot.querySelector("#skills");
+    const skillArray = this.userData.skills;
+    if (skillArray.length != 0) {
+      skillArray.forEach((skill) => {
+        const li = document.createElement("li"); // Use document.createElement
+        li.textContent = skill;
+        skillsList.appendChild(li);
+      });
+    } else {
+      skillsList.textContent = "Skills: No Skill To Display!";
+    }
+
+    this.shadowRoot.querySelector(
+      "#clan"
+    ).textContent = `Clan: ${this.userData.clan}`;
+    this.shadowRoot.querySelector(
+      "#overall-rank"
+    ).textContent = `Overall Score: ${this.userData.ranks.overall.score}`;
+
+    const languages = this.userData.ranks.languages;
+
+    for (const key in languages) {
+      const span = document.createElement("span");
+      span.innerText = `${key}: ${languages[key].score}\n `;
+      this.shadowRoot.querySelector("#languages").appendChild(span);
+    }
+
+    const dataTag = this.shadowRoot.querySelector("#dataTag");
+    dataTag.textContent = kataContent;
+
     //`${this.userData.ranks.overall.color}`;
   }
 }
