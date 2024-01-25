@@ -50,8 +50,15 @@ class CodeWarsBadge extends HTMLElement {
 
 customElements.define("codewars-badge", CodeWarsBadge);
 
+//                              ______
+//                  ||  \\  // ||-----|
+///////////     ////||   \\//  ||_____
+///////////    //         ||   ||-----|
+///     ///    ||         ||   ||
+//      ///     \\-_-_|   ||   ||
 /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
+
 let kataColor, kataValue, kataContent;
 const template = document.createElement("template");
 const templateContent = `
@@ -85,7 +92,7 @@ const templateContent = `
         padding:1rem;
       }
       .user-card{
-        background-color:5f5e5e; 
+        background-color:#444444; 
         margin-top:1rem;
         padding:1rem;
       }
@@ -122,8 +129,12 @@ class SelfCreated extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "bkarimii";
+    this.userName = "CodeYourFuture";
     this.userData = [];
+
+    //this.kataColor = null;
+    //this.kataContent = null;
+    //this.kataValue = null;
   }
 
   connectedCallback() {
@@ -134,13 +145,14 @@ class SelfCreated extends HTMLElement {
     });
 
     this.fetching()
+      .then(() => this.userData)
       .then(() => {
-        kataColor = this.userData.ranks.overall.color;
-        kataContent = this.userData.ranks.overall.name;
-        kataValue = this.userData.ranks.overall.score;
+        //kataColor = this.userData.ranks.overall.color;
+        //kataContent = this.userData.ranks.overall.name;
+        //kataValue = this.userData.ranks.overall.score;
+        console.log(kataColor, kataContent, kataValue);
         this.render();
       })
-      .then(() => this.userData)
       .catch((error) => console.log(error, "<---------- error happened"));
   }
 
@@ -160,7 +172,7 @@ class SelfCreated extends HTMLElement {
       this.userName = value;
       this.fetching().then(() => this.render());
     } else {
-      this.userName = "bkarimii";
+      this.userName = "CodeYourFuture";
     }
   }
 
