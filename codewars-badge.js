@@ -54,67 +54,69 @@ customElements.define("codewars-badge", CodeWarsBadge);
 ////////////////////////////////////////////////////////////////////////
 let kataColor, kataValue, kataContent;
 const template = document.createElement("template");
-template.innerHTML = `
-<div class='container'>
-  <data id='dataTag'  value=${kataValue}></data>
+const templateContent = `
+      <div class='container'>
+      <data id='dataTag'  value=${kataValue}></data>
 
-  <div class='user-card'>
-  <h3></h3>
-  <p id='user-name'></p>
-  <p id='name-of-user'></p>
-  <p id='clan'></p>
-  <ul id='skills'></ul>
-  <div>
-    <p id='overall-rank'></p>
-    <p id='languages'></p>
-  </div>
-  </div>
-  </div>
+      <div class='user-card'>
+      <h3></h3>
+      <p id='user-name'></p>
+      <p id='name-of-user'></p>
+      <p id='clan'></p>
+      <ul id='skills'></ul>
+      <div>
+        <p id='overall-rank'></p>
+        <p id='languages'></p>
+      </div>
+      </div>
+      </div>
 
-<style>
-  :host{
-    --rank: yellow;
-    font: 600 100%/1 system-ui, sans-serif;
-  }
-  .container{
-    background-color:#5c5a5a;;
-    color:white;
-    margin:2rem auto 2rem auto;
-    width:60%;
-    height:fit-content;
-    padding:1rem;
-  }
-  .user-card{
-    background-color:#1f1f2e;
-    margin-top:1rem;
-    padding:1rem;
-  }
-  h3{
-    margin:0;
-    padding:0;
-    
-  }
-  ul{
-    margin:0;
-    padding:0;
-  }
-  li{
-    margin-bottom:0.3rem;
-  }
-  span{
-    margin-bottom:.25rem;
-  }
-  #dataTag{
-    color:var(--rank);
-    border: 3px solid ; 
-    padding: .25em .5em;
-    margin-bottom:1rem;
-    
-    
-  }
+    <style>
+      :host{
+        --rank: yellow;
+        font: 600 100%/1 system-ui, sans-serif;
+      }
+      .container{
+        background-color:#626175;
+        color:white;
+        margin:2rem auto 2rem auto;
+        width:60%;
+        height:fit-content;
+        padding:1rem;
+      }
+      .user-card{
+        background-color:5f5e5e; 
+        margin-top:1rem;
+        padding:1rem;
+      }
+      h3{
+        margin:0;
+        padding:0;
+        
+      }
+      ul{
+        margin:0;
+        padding:0;
+      }
+      li{
+        margin-bottom:0.3rem;
+      }
+      span{
+        margin-bottom:.25rem;
+      }
+      #dataTag{
+        color:var(--rank);
+        border: 3px solid ; 
+        padding: .25em .5em;
+        margin-bottom:1rem;
+        
+        
+      }
 
-</style>
-`;
+    </style>
+  `;
+
+template.innerHTML = templateContent;
 
 class SelfCreated extends HTMLElement {
   constructor() {
@@ -125,6 +127,12 @@ class SelfCreated extends HTMLElement {
   }
 
   connectedCallback() {
+    const form = document.querySelector("#username-form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // Prevent the default form submission
+      this.getUserName();
+    });
+
     this.fetching()
       .then(() => {
         kataColor = this.userData.ranks.overall.color;
@@ -134,9 +142,6 @@ class SelfCreated extends HTMLElement {
       })
       .then(() => this.userData)
       .catch((error) => console.log(error, "<---------- error happened"));
-
-    const fontAwesome = document.querySelector("#icon");
-    fontAwesome.addEventListener("click", () => this.getUserName());
   }
 
   async fetching() {
@@ -149,17 +154,19 @@ class SelfCreated extends HTMLElement {
   }
 
   getUserName() {
-    const value = document.querySelector("input").value;
-    if (value != "") {
+    const input = document.querySelector("input");
+    const value = input.value.trim();
+    if (value !== "") {
       this.userName = value;
-      console.log(this.userName, "<---------Username");
+      this.fetching().then(() => this.render());
     } else {
       this.userName = "bkarimii";
     }
-    console.log(123);
   }
 
   render() {
+    //template.innerHTML = "";
+    this.shadowRoot.innerHTML = "";
     this.shadowRoot.appendChild(template.content.cloneNode(true));
     this.shadowRoot.querySelector("h3").textContent = "The User Profile:";
     this.shadowRoot.querySelector(
@@ -168,11 +175,13 @@ class SelfCreated extends HTMLElement {
     this.shadowRoot.querySelector(
       "#name-of-user"
     ).textContent = `Name: ${this.userData.name}`;
+
     const skillsList = this.shadowRoot.querySelector("#skills");
+    skillsList.innerHTML = "";
     const skillArray = this.userData.skills;
     if (skillArray.length != 0) {
       skillArray.forEach((skill) => {
-        const li = document.createElement("li"); // Use document.createElement
+        const li = document.createElement("li");
         li.textContent = skill;
         skillsList.appendChild(li);
       });
@@ -188,7 +197,7 @@ class SelfCreated extends HTMLElement {
     ).textContent = `Overall Score: ${this.userData.ranks.overall.score}`;
 
     const languages = this.userData.ranks.languages;
-
+    this.shadowRoot.querySelector("#languages").innerHTML = "";
     for (const key in languages) {
       const span = document.createElement("span");
       span.innerText = `${key}: ${languages[key].score}\n `;
@@ -252,3 +261,5 @@ const obj = {
     totalCompleted: 230,
   },
 };
+
+// CodeYourFuture
