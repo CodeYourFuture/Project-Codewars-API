@@ -132,8 +132,8 @@ class SelfCreated extends HTMLElement {
     this.userName = "CodeYourFuture";
     this.userData = [];
 
-    //this.kataColor = null;
-    //this.kataContent = null;
+    this.kataColor = null;
+    this.kataContent = null;
     //this.kataValue = null;
   }
 
