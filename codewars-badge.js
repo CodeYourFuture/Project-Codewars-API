@@ -6,8 +6,8 @@ class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
-    this.userData = [];
+    this.userName = "zelihapala";
+    this.userData = {};
   }
 
   connectedCallback() {
@@ -22,29 +22,36 @@ class CodeWarsBadge extends HTMLElement {
 
   // fetch the data from the Codewars API
   async fetchActivity() {
-    const response = await fetch(
-      `https://www.codewars.com/api/v1/users/${this.userName}`
-    );
+    const response = await fetch(`https://www.codewars.com/api/v1/users/${this.userName}`);
     const data = await response.json();
     this.userData = data; // set the userData property with the fetched data
   }
 
   render() {
     this.shadowRoot.innerHTML = `
-    <style>
+      <style>
         :host {
-           --rank: ${this.userData.ranks.overall.color};
-           font: 600 100%/1 system-ui, sans-serif;
+          --rank: ${this.userData.ranks.overall.color};
+          font: 600 100%/1 system-ui, sans-serif;
         }
         data { 
-            color: var(--rank);
-            border: 3px solid; 
-            padding: .25em .5em;
+          color: var(--rank);
+          border: 3px solid; 
+          padding: .25em .5em;
         }      
       </style>
+      <div>
+        <p>Username: ${this.userData.username}</p>
+        <p>Name: ${this.userData.name}</p>
+        <p>Honor: ${this.userData.honor}</p>
+        <p>Clan: ${this.userData.clan}</p>
+        <p>Leaderboard Position: ${this.userData.leaderboardPosition}</p>
+        <p>Total Authored Challenges: ${this.userData.codeChallenges.totalAuthored}</p>
+        <p>Total Completed Challenges: ${this.userData.codeChallenges.totalCompleted}</p>
         <data value="${this.userData.ranks.overall.score}">
-        ${this.userData.ranks.overall.name}
-        </data>`;
+          ${this.userData.ranks.overall.name}
+        </data>
+      </div>`;
   }
 }
 
