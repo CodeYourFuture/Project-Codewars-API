@@ -6,7 +6,7 @@ class CodeWarsBadge extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-    this.userName = "CodeYourFuture";
+    this.userName = "BakhatBegum";
     this.userData = [];
   }
 
@@ -31,21 +31,35 @@ class CodeWarsBadge extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML = `
-    <style>
-        :host {
-           --rank: ${this.userData.ranks.overall.color};
-           font: 600 100%/1 system-ui, sans-serif;
-        }
-        data { 
-            color: var(--rank);
-            border: 3px solid; 
-            padding: .25em .5em;
-        }      
-      </style>
-        <data value="${this.userData.ranks.overall.score}">
-        ${this.userData.ranks.overall.name}
-        </data>`;
+<data>
+<table>
+<tr>
+  <td>Rank: </td>
+    <td>${this.userData.ranks.overall.name}</td>
+    <td>${this.userData.ranks.overall.score}</td>
+    <td>${this.userData.ranks.overall.color}</td>
+</tr> 
+
+<tr>
+  <td>Honor: </td>
+    <td>${this.userData.honor}</td>
+</tr>
+
+<tr>
+    <td>JavaScript Rank: </td>
+    <td>${this.userData.ranks.languages.javascript.name}</td>
+    <td>${this.userData.ranks.languages.javascript.score}</td>
+    <td>${this.userData.ranks.languages.javascript.color}</td>
+</tr>
+
+<tr>
+      <td>Total Completed Kata: </td>
+      <td>${this.userData.codeChallenges.totalCompleted}</td>
+</tr>
+
+</table>
+</data>`
   }
 }
-
 customElements.define("codewars-badge", CodeWarsBadge);
+
