@@ -1,0 +1,48 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #a9a7a7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#main-div {
+    width: 60%;
+    background-color:#807f7f;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+input {
+    padding: 4px;
+    margin-bottom: 15px;
+    width: 14rem;
+    height: 1.5rem;
+    box-sizing: border-box;
+}
+.fa.fa-search {
+    width: 1rem;
+    height: 1rem;
+    
+}
+.fa.fa-search:hover{
+    cursor: pointer;
+}
+
+
+self-created {
+    margin-top: 15px;
+    display: block;
+    width: 100%;
+}
+
