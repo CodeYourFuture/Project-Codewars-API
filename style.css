@@ -1,0 +1,22 @@
+:root {
+  --bg-colour: #16171b;
+  --fg-colour: #222327;
+  --text-colour: #efefef;
+  --text-secondary-colour: #b0b0b0;
+  --accent-colour: #b1361e;
+
+  --font-sans-serif: 'Lato', sans-serif;
+
+  --font-general: 600 1.2rem/1 var(--font-sans-serif);
+  --font-title: normal 2rem/1.5 var(--font-sans-serif);
+}
+
+body {
+  background-color: var(--bg-colour);
+  color: var(--text-colour);
+  font: var(--font-general);
+  -webkit-font-smoothing: antialiased;
+
+  width: 60%;
+  margin: auto;
+}
